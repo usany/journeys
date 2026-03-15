@@ -29,7 +29,7 @@ export default function TabTwoScreen() {
             fontFamily: Fonts.rounded,
           }}
         >
-          Explore
+          Gwangneung
         </ThemedText>
       </ThemedView>
       <ThemedText>

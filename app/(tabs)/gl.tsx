@@ -29,7 +29,7 @@ export default function TabTwoScreen() {
             fontFamily: Fonts.rounded,
           }}
         >
-          Explore
+          Global
         </ThemedText>
       </ThemedView>
       <ThemedText>
