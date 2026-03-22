@@ -10,6 +10,7 @@ export default function HomeScreen() {
         <Text>어디로 떠나볼까요?</Text>
       </View>
       <View style={styles.footerContainer}>
+
         <Button theme='primary' label="Choose a photo" />
         <Button label="Use this photo" />
       </View>
@@ -18,9 +19,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  // container: { display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', paddingBottom: 96 },
-  // grid: { display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16, maxWidth: 672, margin: '0 auto' },
-  // cardBase: { display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 24, borderRadius: 8, transition: 'background-color 0.2s', textDecoration: 'none', color: 'inherit' },
   contentWrapper: { textAlign: 'center', width: '100%' },
   title: { fontSize: 36, fontWeight: 'bold', marginBottom: 32, margin: 0 },
   subtitle: { fontSize: 18, color: '#4b5563', marginBottom: 32, margin: 0 },
@@ -35,6 +33,9 @@ const styles = StyleSheet.create({
   iconYellow: { color: '#ca8a04' },
   iconPurple: { color: '#9333ea' },
   cardText: { fontWeight: 500 },
+  // container: { display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', paddingBottom: 96 },
+  // grid: { display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16, maxWidth: 672, margin: '0 auto' },
+  // cardBase: { display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 24, borderRadius: 8, transition: 'background-color 0.2s', textDecoration: 'none', color: 'inherit' },
   container: {
     flex: 1,
     backgroundColor: '#25292e',
