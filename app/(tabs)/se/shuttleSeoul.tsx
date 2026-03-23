@@ -1,12 +1,10 @@
-import Button from "@/components/Button";
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
+      {/* <View style={styles.imageContainer}>
         <Text style={styles.imageContainer}>경희대 서울캠퍼스</Text>
         <Text>어디로 떠나볼까요?</Text>
       </View>
@@ -26,7 +24,7 @@ export default function HomeScreen() {
 
         <Button theme='primary' label="Choose a photo" />
         <Button label="Use this photo" />
-      </View>
+      </View> */}
     </View>
   );
 }
