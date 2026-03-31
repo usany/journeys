@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import { SettingsModal } from "@/components/settings-modal";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useLanguage } from "@/contexts/language-context";
 import { useTheme } from "@/contexts/theme-context";
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from "react";
@@ -9,12 +10,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const { colors } = useTheme();
+  const { text } = useLanguage();
   const [showSettings, setShowSettings] = useState(false);
   
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.header}>
-        <Text style={[styles.title, { color: colors.text }]}>경희대 서울캠퍼스</Text>
+        <Text style={[styles.title, { color: colors.text }]}>{text('app.title')}</Text>
         <View style={styles.headerButtons}>
           <Pressable onPress={() => setShowSettings(true)} style={styles.settingsButton}>
             <Ionicons name="settings-outline" size={24} color={colors.text} />
@@ -23,11 +25,11 @@ export default function HomeScreen() {
         </View>
       </View>
       <View style={styles.imageContainer}>
-        <Text style={{ color: colors.text }}>어디로 떠나볼까요?</Text>
+        <Text style={{ color: colors.text }}>{text('app.subtitle')}</Text>
       </View>
       <View style={styles.footerContainer}>
-        <Button theme='primary' label="Choose a photo" />
-        <Button label="Use this photo" />
+        <Button theme='primary' label={text('button.choose_photo')} />
+        <Button label={text('button.use_photo')} />
       </View>
       <SettingsModal
         visible={showSettings} 
