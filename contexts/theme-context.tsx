@@ -13,8 +13,15 @@ interface ThemeContextType {
     card: string;
     border: string;
     primary: string;
+    tint: string;
+    icon: string;
+    tabIconDefault: string;
+    tabIconSelected: string;
   };
 }
+
+const tintColorLight = '#0a7ea4';
+const tintColorDark = '#753753';
 
 const lightColors = {
   background: '#ffffff',
@@ -22,6 +29,10 @@ const lightColors = {
   card: '#f3f4f6',
   border: '#e5e7eb',
   primary: '#3b82f6',
+  tint: tintColorLight,
+  icon: '#687076',
+  tabIconDefault: '#687076',
+  tabIconSelected: tintColorLight,
 };
 
 const darkColors = {
@@ -30,6 +41,10 @@ const darkColors = {
   card: '#374151',
   border: '#4b5563',
   primary: '#60a5fa',
+  tint: tintColorDark,
+  icon: '#9BA1A6',
+  tabIconDefault: '#9BA1A6',
+  tabIconSelected: tintColorDark,
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
