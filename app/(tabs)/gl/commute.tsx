@@ -56,12 +56,12 @@ export default function Commute() {
                   return (
                     <View key={index} style={styles.stepContainer}>
                       <View style={nextBus <= index ? styles.stepIconShuttleActive : styles.stepIconShuttleInactive}>
-                        <Text style={styles.stepIconText}>{step.clock}</Text>
+                        <ThemedText style={styles.stepIconText}>{step.clock}</ThemedText>
                       </View>
                       <View style={styles.stepTextContainer}>
-                        <Text style={styles.stepTitle}>
+                        <ThemedText style={styles.stepTitle}>
                           {step.routeKo}
-                        </Text>
+                        </ThemedText>
                       </View>
                     </View>
                   )
