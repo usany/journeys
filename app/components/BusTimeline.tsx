@@ -42,7 +42,7 @@ export default function BusTimeline() {
   const pathname = usePathname();
   const vehicle = pathname.slice(4, pathname.length);
   const steps = getProcessSteps(vehicle);
-  const { busData, timeUntilNextFetch, fetchBusData } = useBusData(pathname, getProcessSteps);
+  const { busData, timeUntilNextFetch, fetchBusData } = useBusData(pathname);
   const isuseSeoulBus = useSeoulBus();
   const parsedBusData = typeof busData === 'string' ? JSON.parse(busData) : busData;
   let itemList

@@ -1,11 +1,10 @@
 import { usePathname } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useBusData } from "../hooks/useBusData";
-import { getProcessSteps } from "./steps";
 
 export default function RefreshCounter() {
   const pathname = usePathname();
-  const { busData, timeUntilNextFetch, fetchBusData } = useBusData(pathname, getProcessSteps);
+  const { busData, timeUntilNextFetch, fetchBusData } = useBusData(pathname);
   console.log(timeUntilNextFetch)
   return (
     <View style={styles.refreshContainer}>

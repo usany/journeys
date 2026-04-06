@@ -86,8 +86,8 @@ const Schedule = () => {
       const res = data.data.seoulBusArrival.response.msgBody.itemList[5];
       return res;
     }
-    // const response = await fetch(`http://localhost:8000/graphql`, {
-    const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
+    const response = await fetch(`http://localhost:8000/graphql`, {
+    // const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

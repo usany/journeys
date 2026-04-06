@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { busCollection } from '../components/busCollection';
 import { useSeoulBus } from '../components/BusTimeline';
+import { getProcessSteps } from '../components/steps';
 
 const builduseSeoulBusQuery = (id: number) => `
   query {
@@ -37,7 +38,7 @@ const buildGyeonggiBusQuery = (id: number) => `
   }
 `;
 
-export const useBusData = (pathname: string, getProcessSteps: (vehicleType: string) => any[]) => {
+export const useBusData = (pathname: string) => {
   const [busData, setBusData] = useState<{ [key: number]: any }>({});
   const [timeUntilNextFetch, setTimeUntilNextFetch] = useState(60);
   const vehicle = pathname.slice(4, pathname.length);
@@ -63,8 +64,8 @@ export const useBusData = (pathname: string, getProcessSteps: (vehicleType: stri
       return res;
     }
     // response = await fetch(`http://localhost:3000/gyArrival/${id}`);
-    // response = await fetch(`http://localhost:8000/graphql`, {
-    response = await fetch(`https://qlroutes.onrender.com/graphql`, {
+    response = await fetch(`http://localhost:8000/graphql`, {
+    // response = await fetch(`https://qlroutes.onrender.com/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
