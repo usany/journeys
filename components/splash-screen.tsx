@@ -1,8 +1,8 @@
-import { useTheme } from "@/contexts/theme-context";
-import { useLanguage } from "@/contexts/language-context";
 import { useCampus } from "@/contexts/campus-context";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { useLanguage } from "@/contexts/language-context";
+import { useTheme } from "@/contexts/theme-context";
 import { useEffect, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 export function SplashScreen() {
   const { colors, isDark } = useTheme();
@@ -40,7 +40,7 @@ export function SplashScreen() {
             style={styles.spinner}
           />
           <Text style={[styles.loadingText, { color: colors.text }]}>
-            Loading application...
+            Loading
           </Text>
         </View>
       </View>
