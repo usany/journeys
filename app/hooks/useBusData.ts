@@ -3,7 +3,7 @@ import { busCollection } from '../components/busCollection';
 import { useSeoulBus } from '../components/BusTimeline';
 import { getProcessSteps } from '../components/steps';
 
-const builduseSeoulBusQuery = (id: number) => `
+const builduseSeoulBusQuery = (id: number[]) => `
   query {
     seoulBusArrival(routeId: ${id}) {
       response {
@@ -44,23 +44,23 @@ export const useBusData = (pathname: string) => {
   const vehicle = pathname.slice(4, pathname.length);
   const isuseSeoulBus = useSeoulBus()
   console.log(vehicle)
-  const fetchStep = async (id: number | number[]) => {
+  const fetchStep = async (id: number[]) => {
     let response;
     if (pathname.includes('se')) {
       // response = await fetch(`http://localhost:3000/seArrival/${id}`);
-      // response = await fetch(`http://localhost:8000/graphql`, {
-      response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+      response = await fetch(`http://localhost:5000/graphql`, {
+      // response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: builduseSeoulBusQuery(id as number),
+          query: builduseSeoulBusQuery(id),
         }),
       });
 
       const responseText = await response.json();
-      const res = responseText.data.seoulBusArrival;
+      const res = responseText.data.seoulBusArrival[0].response?.msgBody?.itemList;
       return res;
     }
     try {
@@ -73,7 +73,7 @@ export const useBusData = (pathname: string) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: buildGyeonggiBusQuery(id as number[]),
+          query: buildGyeonggiBusQuery(id),
         }),
       });
 

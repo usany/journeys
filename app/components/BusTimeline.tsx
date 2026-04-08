@@ -47,8 +47,8 @@ export default function BusTimeline() {
   const isuseSeoulBus = useSeoulBus();
   const parsedBusData = typeof busData === 'string' ? JSON.parse(busData) : busData;
   let itemList
-  if (isuseSeoulBus && parsedBusData?.response?.msgBody?.itemList) {
-    itemList = parsedBusData.response.msgBody.itemList;
+  if (isuseSeoulBus && parsedBusData) {
+    itemList = parsedBusData;
   } else {
     itemList = []
   }
