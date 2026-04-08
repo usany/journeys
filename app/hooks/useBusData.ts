@@ -98,8 +98,8 @@ export const useBusData = (pathname: string) => {
     } else {
       console.log('steps', steps)
       const stepsIds: number[] = steps.map(step => step.id)
-      const dataArray = await fetchStep(stepsIds)
-      setBusData(dataArray);
+      const dataObj = await fetchStep(stepsIds)
+      setBusData(dataObj);
     }
     setTimeUntilNextFetch(60);
   }, [vehicle, getProcessSteps]);
