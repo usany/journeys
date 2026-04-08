@@ -14,7 +14,7 @@ interface BusIncomingDisplayProps {
 export default function BusIncomingDisplay({ fetchedData, index }: BusIncomingDisplayProps) {
   // const targetDataList = fetchedData.filter((data: any) => data.locationNo1 === 1);
   const routeName = fetchedData[index]?.rtNm || fetchedData[index]?.routeName;
-  return fetchedData[index].arrmsg1.includes('도착') || fetchedData[index].arrmsg1.includes('1번째') || fetchedData[index].locationNo1 === 1 ? (
+  return fetchedData[index]?.arrmsg1?.includes('도착') || fetchedData[index]?.arrmsg1?.includes('1번째') || fetchedData[index]?.locationNo1 === 1 ? (
     <View style={styles.busIncomingContainer}>
       <View style={styles.busIncomingText}>
         <ThemedText key={index}>{routeName}</ThemedText>
