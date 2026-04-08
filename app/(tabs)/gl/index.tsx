@@ -64,7 +64,7 @@ export default function PlaceTwo() {
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 96 },
   contentWrapper: { alignItems: 'center', width: '100%' },
-  title: { fontSize: 36, fontWeight: 'bold', marginBottom: 32 },
+  title: { fontSize: 20, fontWeight: 'bold', marginBottom: 32 },
   subtitle: { fontSize: 18, color: '#4b5563', marginBottom: 32 },
   cardsContainer: { flexDirection: 'column', gap: 24, width: '100%', maxWidth: 800 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 16, width: '100%', justifyContent: 'center' },

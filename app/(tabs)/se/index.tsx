@@ -63,7 +63,7 @@ export default function PlaceOne() {
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 96 },
   contentWrapper: { alignItems: 'center', width: '100%' },
-  title: { fontSize: 36, fontWeight: 'bold', marginBottom: 32 },
+  title: { fontSize: 20, fontWeight: 'bold', marginBottom: 32 },
   cardsContainer: { flexDirection: 'column', gap: 24, width: '100%', maxWidth: 800 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 16, width: '100%', justifyContent: 'center' },
   cardBase: { flexDirection: 'column', alignItems: 'center', padding: 17, borderRadius: 8, width: '45%', minWidth: 140 },
