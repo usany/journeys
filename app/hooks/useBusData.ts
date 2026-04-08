@@ -21,9 +21,9 @@ const builduseSeoulBusQuery = (id: number) => `
     }
   }
 `;
-const buildGyeonggiBusQuery = (id: number) => `
+const buildGyeonggiBusQuery = (id: number[]) => `
   query {
-    gyeonggiBusArrival(stationId: ${id}) {
+    gyeonggiBusArrival(stationIds: ${id}) {
       response {
         msgBody {
           busArrivalList {
@@ -44,7 +44,7 @@ export const useBusData = (pathname: string) => {
   const vehicle = pathname.slice(4, pathname.length);
   const isuseSeoulBus = useSeoulBus()
   console.log(vehicle)
-  const fetchStep = async (id: number) => {
+  const fetchStep = async (id: number | number[]) => {
     let response;
     if (pathname.includes('se')) {
       // response = await fetch(`http://localhost:3000/seArrival/${id}`);
@@ -55,7 +55,7 @@ export const useBusData = (pathname: string) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: builduseSeoulBusQuery(id),
+          query: builduseSeoulBusQuery(id as number),
         }),
       });
 
@@ -63,22 +63,29 @@ export const useBusData = (pathname: string) => {
       const res = responseText.data.seoulBusArrival;
       return res;
     }
-    // response = await fetch(`http://localhost:3000/gyArrival/${id}`);
-    // response = await fetch(`http://localhost:8000/graphql`, {
-    // response = await fetch(`https://qlroutes.onrender.com/graphql`, {
-    response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buildGyeonggiBusQuery(id),
-      }),
-    });
+    try {
+      // response = await fetch(`http://localhost:3000/gyArrival/${id}`);
+      response = await fetch(`http://localhost:5000/graphql`, {
+      // response = await fetch(`https://qlroutes.onrender.com/graphql`, {
+      // response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: buildGyeonggiBusQuery(id as number[]),
+        }),
+      });
 
-    const data = await response.json();
-    const res = data.data.gyeonggiBusArrival?.response?.msgBody?.busArrivalList
-    return res;
+      const data = await response.json();
+      const res: Record<number, any> = {};
+      (id as number[]).map((item: number, index: number) => res[item] = data.data.gyeonggiBusArrival[index]?.response?.msgBody?.busArrivalList)
+      console.log('res', res)
+      return res;
+    } catch (error) {
+      console.error('Error fetching bus data:', error);
+      return null;
+    }
   };
 
   const fetchBusData = useCallback(async () => {
@@ -90,23 +97,9 @@ export const useBusData = (pathname: string) => {
       setBusData(data);
     } else {
       console.log('steps', steps)
-      const prevData = {} as { [key: number]: any };
-      const fetchPromises = steps.map(async (step) => {
-        if (typeof step !== 'string' && 'id' in step) {
-          try {
-            const data = await fetchStep((step as any).id);
-            prevData[(step as any).id] = data
-            return data;
-          } catch (error) {
-            console.error('Error fetching bus data:', error);
-            return null;
-          }
-        }
-        return null;
-      });
-      
-      await Promise.all(fetchPromises);
-      setBusData(prevData);
+      const stepsIds: number[] = steps.map(step => step.id)
+      const dataList = await fetchStep(stepsIds)
+      setBusData(dataList);
     }
     setTimeUntilNextFetch(60);
   }, [vehicle, getProcessSteps]);
