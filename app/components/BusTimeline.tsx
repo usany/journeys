@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   stepContainer: { alignItems: 'center', gap: 24 },
   stepIconShuttleActive: { width: 72, height: 64, backgroundColor: '#2563eb', borderRadius: 6, alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: 16, zIndex: 10 },
   stepIconShuttleInactive: { width: 72, height: 64, backgroundColor: '#4b5563', borderRadius: 6, alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: 16, zIndex: 10 },
-  stepTextContainer: { textAlign: 'left', maxWidth: 448, flex: 1 },
+  stepTextContainer: { textAlign: 'left', maxWidth: 448, flex: 1, justifyContent: 'flex-end' },
   stepTitle: { fontSize: 18, fontWeight: 500, margin: 0 },
 
   // Bus specific
