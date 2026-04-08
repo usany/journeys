@@ -5,7 +5,7 @@ import { getProcessSteps } from '../components/steps';
 
 const builduseSeoulBusQuery = (id: number[]) => `
   query {
-    seoulBusArrival(routeId: ${id}) {
+    seoulBusArrival(routeIds: ${id}) {
       response {
         msgBody {
           itemList {
