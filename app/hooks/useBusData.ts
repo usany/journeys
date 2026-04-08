@@ -79,7 +79,7 @@ export const useBusData = (pathname: string) => {
       const data = await response.json();
       const res: Record<number, any> = {};
       (id as number[]).map((item: number, index: number) => res[item] = data.data.gyeonggiBusArrival[index]?.response?.msgBody?.busArrivalList)
-      console.log('res', res)
+      // console.log('res', res)
       return res;
     } catch (error) {
       console.error('Error fetching bus data:', error);
@@ -91,11 +91,10 @@ export const useBusData = (pathname: string) => {
     const steps = getProcessSteps(vehicle);
     if (isuseSeoulBus) {
       const busNum = pathname.includes('busOne') ? '01' : pathname.includes('busTwo') ? '02' : 'A01';
-      const busId = busCollection.seoul[busNum];
+      const busId = [busCollection.seoul[busNum]];
       const data = await fetchStep(busId);
       setBusData(data);
     } else {
-      console.log('steps', steps)
       const stepsIds: number[] = steps.map(step => step.id)
       const dataObj = await fetchStep(stepsIds)
       setBusData(dataObj);

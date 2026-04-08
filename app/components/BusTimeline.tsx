@@ -43,7 +43,7 @@ export default function BusTimeline() {
   const vehicle = pathname.slice(4, pathname.length);
   const steps = getProcessSteps(vehicle);
   const { busData, timeUntilNextFetch, fetchBusData } = useBusData(pathname);
-  console.log('busData', busData)
+  // console.log('busData', busData)
   const isuseSeoulBus = useSeoulBus();
   const parsedBusData = typeof busData === 'string' ? JSON.parse(busData) : busData;
   let itemList
@@ -64,8 +64,8 @@ export default function BusTimeline() {
           // For bus steps, we can access the fetched data from state
           const stepId = typeof step !== 'string' && 'id' in step ? (step as any).id : null;
           const fetchedData = !isuseSeoulBus ? busData[stepId] : itemList;
-          console.log('stepId', stepId)
-          console.log('fetchedData', fetchedData)
+          // console.log('stepId', stepId)
+          // console.log('fetchedData', fetchedData)
           return (
             <View key={index} style={styles.busStepContainer}>
               <View style={styles.busIconWrapper}>

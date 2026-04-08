@@ -16,8 +16,8 @@ export default function BusIncomingDisplay({ fetchedData, index }: BusIncomingDi
   // const targetDataList = fetchedData.filter((data: any) => data.locationNo1 === 1);
   const routeName = fetchedData[index]?.rtNm || fetchedData[index]?.routeName;
   const isIncoming = fetchedData[index]?.arrmsg1?.includes('도착') || fetchedData[index]?.arrmsg1?.includes('0번째') || fetchedData[index]?.locationNo1 === 1;
-  console.log('fetchedData', fetchedData);
-  console.log('isIncoming', fetchedData[index]?.arrmsg1);
+  // console.log('fetchedData', fetchedData);
+  // console.log('isIncoming', fetchedData[index]?.arrmsg1);
   return isIncoming ? (
     <View style={styles.busIncomingContainer}>
       <View style={styles.busIncomingText}>
