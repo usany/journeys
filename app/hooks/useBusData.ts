@@ -39,11 +39,10 @@ const buildGyeonggiBusQuery = (id: number[]) => `
 `;
 
 export const useBusData = (pathname: string) => {
-  const [busData, setBusData] = useState<{ [key: number]: any }>({});
+  const [busData, setBusData] = useState<{ [key: number]: any }>([]);
   const [timeUntilNextFetch, setTimeUntilNextFetch] = useState(60);
   const vehicle = pathname.slice(4, pathname.length);
   const isuseSeoulBus = useSeoulBus()
-  console.log(vehicle)
   const fetchStep = async (id: number[]) => {
     let response;
     if (pathname.includes('se')) {
