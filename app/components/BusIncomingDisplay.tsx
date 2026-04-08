@@ -9,16 +9,21 @@ interface BusData {
 
 interface BusIncomingDisplayProps {
   fetchedData: BusData[];
+  index: number;
 }
 
-export default function BusIncomingDisplay({ fetchedData }: BusIncomingDisplayProps) {
-  const targetDataList = fetchedData.filter((data: any) => data.locationNo1 === 1);
-  return targetDataList.length > 0 ? (
+export default function BusIncomingDisplay({ fetchedData, index }: BusIncomingDisplayProps) {
+  // const targetDataList = fetchedData.filter((data: any) => data.locationNo1 === 1);
+  const routeName = fetchedData[index]?.rtNm || fetchedData[index]?.routeName;
+  const isIncoming = fetchedData[index]?.arrmsg1?.includes('도착') || fetchedData[index]?.arrmsg1?.includes('0번째') || fetchedData[index]?.locationNo1 === 1;
+  // console.log('fetchedData', fetchedData);
+  // console.log('isIncoming', fetchedData[index]?.arrmsg1);
+  return isIncoming ? (
     <View style={styles.busIncomingContainer}>
       <View style={styles.busIncomingText}>
-        {targetDataList.map((data: any, idx: number) => (
-          <ThemedText key={idx}>{data.routeName}</ThemedText>
-        ))}
+        <ThemedText key={index}>{routeName}</ThemedText>
+        {/* {routeNames.map((routeName: string, idx: number) => (
+        ))} */}
       </View>
       <MaterialIcons name="directions-bus" size={24} color="#111827" />
     </View>

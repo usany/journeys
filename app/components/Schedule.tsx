@@ -1,14 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { busCollection } from "./busCollection";
 
 // Global flag to prevent multiple fetches across component remounts
 // let globalHasFetched = false;
-const builduseSeoulBusQuery = (id: number) => `
+const builduseSeoulBusQuery = (id: number[]) => `
   query {
-    seoulBusArrival(routeId: ${id}) {
+    seoulBusArrival(routeIds: [${id.join(',')}]) {
       response {
         msgBody {
           itemList {
@@ -25,9 +25,9 @@ const builduseSeoulBusQuery = (id: number) => `
   }
 `;
 
-const buildGyeonggiBusRouteQuery = (id: number) => `
+const buildGyeonggiBusRouteQuery = (id: number[]) => `
   query {
-    gyeonggiBusRoute(routeId: ${id}) {
+    gyeonggiBusRoute(routeIds: [${id.join(',')}]) {
       response {
         msgBody {
           busRouteInfoItem {
@@ -70,11 +70,11 @@ const Schedule = () => {
     });
   };
   
-  const fetchBus = async (id: number) => {
+  const fetchBus = async (id: number[]) => {
     if (pathname.includes('se')) {
-      // const response = await fetch(`http://localhost:8000/graphql`, {
+      const response = await fetch(`http://localhost:5000/graphql`, {
       // const response = await fetch(`https://qlroute.onrender.com/graphql`, {
-      const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+      // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,23 +84,29 @@ const Schedule = () => {
         }),
       });
       const data = await response.json();
-      const res = data.data.seoulBusArrival.response.msgBody.itemList[5];
+      const res = data.data.seoulBusArrival.map((item: any) => item.response.msgBody.itemList[5]);
       return res;
     }
-    // const response = await fetch(`http://localhost:8000/graphql`, {
-    // const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
-    const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {  
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buildGyeonggiBusRouteQuery(id),
-      }),
-    });
-    const data = await response.json();
-    const res = data.data.gyeonggiBusRoute.response.msgBody.busRouteInfoItem
-    return res
+    console.log('id', id)
+    try {
+      const response = await fetch(`http://localhost:5000/graphql`, {
+      // const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
+      // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {  
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: buildGyeonggiBusRouteQuery(id),
+        }),
+      });
+      const data = await response.json();
+      const res = data.data.gyeonggiBusRoute.map((item: any) => item.response.msgBody.busRouteInfoItem);
+      return res
+    } catch (error) {
+      console.error('Error fetching bus data:', error);
+      return null;
+    }
   }
 
   useEffect(() => {
@@ -111,17 +117,21 @@ const Schedule = () => {
       console.log('Starting fetch...');
       if (selectedBus) {
         const busRoutes = Object.values(selectedBus);
-        const promises = busRoutes.map((routeId: number) => fetchBus(routeId));
-        const results = await Promise.all(promises);
-        const allBusData = results.flat();
-        setBusData(allBusData);
+        // const promises = busRoutes.map((routeId: number) => fetchBus(routeId));
+        // const results = await Promise.all(promises);
+        const results = await fetchBus(busRoutes)
+        console.log('results', results)
+        // const allBusData = results.flat();
+        if (results) {
+          setBusData(results);
+        }
       }
     };
     
     fetchAllBuses();
   }, []);
   
-  console.log('Schedule render, busData length:', busData.length);
+    console.log('Schedule render, busData length:', busData.length);
     const renderContent = (bus: any, index: number) => {
     const routeName = bus.rtNm;
     const upFirstTime = bus.firstTm.slice(8, 10) + ':' + bus.firstTm.slice(10, 11)+'0';
@@ -444,4 +454,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Schedule);
+export default Schedule;
