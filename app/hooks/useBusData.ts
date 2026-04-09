@@ -47,8 +47,8 @@ export const useBusData = (pathname: string) => {
     let response;
     if (pathname.includes('se')) {
       // response = await fetch(`http://localhost:3000/seArrival/${id}`);
-      response = await fetch(`http://localhost:5000/graphql`, {
-      // response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+      // response = await fetch(`http://localhost:5000/graphql`, {
+      response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,9 +64,9 @@ export const useBusData = (pathname: string) => {
     }
     try {
       // response = await fetch(`http://localhost:3000/gyArrival/${id}`);
-      response = await fetch(`http://localhost:5000/graphql`, {
+      // response = await fetch(`http://localhost:5000/graphql`, {
       // response = await fetch(`https://qlroutes.onrender.com/graphql`, {
-      // response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+      response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

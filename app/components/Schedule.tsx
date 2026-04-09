@@ -72,9 +72,9 @@ const Schedule = () => {
   
   const fetchBus = async (id: number[]) => {
     if (pathname.includes('se')) {
-      const response = await fetch(`http://localhost:5000/graphql`, {
+      // const response = await fetch(`http://localhost:5000/graphql`, {
       // const response = await fetch(`https://qlroute.onrender.com/graphql`, {
-      // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
+      const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,9 +89,9 @@ const Schedule = () => {
     }
     console.log('id', id)
     try {
-      const response = await fetch(`http://localhost:5000/graphql`, {
+      // const response = await fetch(`http://localhost:5000/graphql`, {
       // const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
-      // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {  
+      const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {  
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
