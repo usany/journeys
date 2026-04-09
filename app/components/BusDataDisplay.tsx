@@ -29,6 +29,7 @@ export default function BusDataDisplay({ fetchedData, isLastStep, index }: BusDa
     return (
       <ThemedText key={index} style={styles.busSubtitle}>
         Bus data: {routeName}
+{'\n'}
         {predictTime1 !== '출발대기' && predictTime1 !== '운행종료' ? `${predictTime1} (${locationNo1} 정거장) ${stationNm1}` : predictTime1}
         {isLastStep && predictTime1 !== '출발대기' && predictTime1 !== '운행종료' ? `(${stationNm1} ${locationNo1})` : ''}
       </ThemedText>
