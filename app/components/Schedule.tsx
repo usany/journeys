@@ -71,8 +71,10 @@ const Schedule = () => {
   };
   
   const fetchBus = async (id: number[]) => {
+    // const url = `http://localhost:5000/graphql`
+    const url = `https://routes-xlbe.vercel.app/graphql`
     if (pathname.includes('se')) {
-      const response = await fetch(`http://localhost:5000/graphql`, {
+      const response = await fetch(url, {
       // const response = await fetch(`https://qlroute.onrender.com/graphql`, {
       // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {
         method: 'POST',
@@ -89,7 +91,7 @@ const Schedule = () => {
     }
     console.log('id', id)
     try {
-      const response = await fetch(`http://localhost:5000/graphql`, {
+      const response = await fetch(url, {
       // const response = await fetch(`https://qlroutes.onrender.com/graphql`, {
       // const response = await fetch(`https://routes-xlbe.vercel.app/graphql`, {  
         method: 'POST',
