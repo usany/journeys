@@ -77,7 +77,7 @@ export default function Commute() {
 const styles = StyleSheet.create({
   mainContainer: { flex: 1, minHeight: '100%' },
   scrollContent: { alignItems: 'center', justifyContent: 'center', paddingBottom: 96 },
-  mainContent: { textAlign: 'center', maxWidth: 672, marginHorizontal: 'auto', padding: 32 },
+  mainContent: { textAlign: 'center', maxWidth: 672, padding: 32 },
   processSection: { flexDirection: 'column', gap: 24, alignItems: 'center' },
   processTitle: { fontSize: 24, fontWeight: '600', marginBottom: 24, margin: 0 },
   infoContainer: { flexDirection: 'column', alignItems: 'center' },
