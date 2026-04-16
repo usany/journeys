@@ -24,7 +24,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.ckd_qja.myapp"
+      "package": "com.ckd_qja.khubus"
     },
     "web": {
       "output": "static",
