@@ -20,6 +20,7 @@ export default function BusDataDisplay({ fetchedData, isLastStep, index }: BusDa
   //   return <ThemedText>로딩 중...</ThemedText>;
   // }
   if (isSeoulBus) {
+    // console.log(fetchedData[index])
     const arrmsg = fetchedData[index].arrmsg1;
     const routeName = fetchedData[index].rtNm;
     const predictTime1 = arrmsg.indexOf('분') < 0 ? arrmsg : arrmsg.slice(0, arrmsg.indexOf('분')+1);
@@ -27,7 +28,7 @@ export default function BusDataDisplay({ fetchedData, isLastStep, index }: BusDa
     const stationNm1 = fetchedData[index-locationNo1 < 0 ? 0 : index-locationNo1]?.stNm;
     return (
       <ThemedText key={index} style={styles.busSubtitle}>
-        Bus data: {routeName}
+        Bus: {routeName}
 {'\n'}
         {predictTime1 !== '출발대기' && predictTime1 !== '운행종료' ? `${predictTime1} (${locationNo1} 정거장) ${stationNm1}` : predictTime1}
         {isLastStep && predictTime1 !== '출발대기' && predictTime1 !== '운행종료' ? `(${stationNm1} ${locationNo1})` : ''}
@@ -45,7 +46,7 @@ export default function BusDataDisplay({ fetchedData, isLastStep, index }: BusDa
 
         return (
           <ThemedText key={dataIndex} style={styles.busSubtitle}>
-            {`Bus data: ${routeName}\n`}
+            {`Bus: ${routeName}\n`}
             {predictTime1 ? `${predictTime1}분 (${locationNo1} 정거장) ${stationNm1}` : '대기'}
             {isLastStep && predictTime1 ? `(${stationNm1} ${locationNo1})` : ''}
           </ThemedText>

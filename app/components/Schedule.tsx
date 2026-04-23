@@ -1,3 +1,4 @@
+import { useTheme } from "@/contexts/theme-context";
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
 import { useEffect, useState } from "react";
@@ -83,6 +84,7 @@ const Schedule = () => {
   // const hasFetched = useRef(false);
   const campus = pathname.includes('se') ? 'seoul' : pathname.includes('gw') ? 'gwangneung' : 'global';
   const selectedBus = busCollection[campus];
+  const { colors } = useTheme();
   
   const toggleAccordion = (index: number) => {
     setOpenAccordions(prev => {
@@ -165,28 +167,28 @@ const Schedule = () => {
     const peekAlloc = bus.term;
     
     return (
-      <View key={index} style={styles.busItem}>
+      <View key={index} style={[styles.busItem, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <View style={styles.busItemHeader}>
           <View style={styles.busItemHeaderLeft}>
-            <View style={styles.busNumber}>
-              <Text style={styles.busNumberText}>{index + 1}</Text>
+            <View style={[styles.busNumber, { backgroundColor: colors.primary }]}> 
+              <Text style={[styles.busNumberText, { color: colors.card }]}>{index + 1}</Text>
             </View>
-            <Text style={styles.routeName}>{routeName}</Text>
+            <Text style={[styles.routeName, { color: colors.text }]}>{routeName}</Text>
           </View>
-          <Text style={styles.timeText}>{upFirstTime}~{upLastTime}</Text>
+          <Text style={[styles.timeText, { color: colors.icon }]}>{upFirstTime}~{upLastTime}</Text>
         </View>
 
-        <View style={styles.busItemContent}>
+        <View style={[styles.busItemContent, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
           <View style={styles.infoRow}>
-            <Ionicons name="time-outline" size={16} color="#6b7280" />
-            <Text style={styles.infoLabel}>운행시간</Text>
-            <Text style={styles.infoValue}>{upFirstTime}~{upLastTime}</Text>
+            <Ionicons name="time-outline" size={16} color={colors.icon} />
+            <Text style={[styles.infoLabel, { color: colors.text }]}>운행시간</Text>
+            <Text style={[styles.infoValue, { color: colors.text }]}>{upFirstTime}~{upLastTime}</Text>
           </View>
 
           <View style={styles.infoRow}>
-            <Ionicons name="calendar-outline" size={16} color="#6b7280" />
-            <Text style={styles.infoLabel}>배차간격</Text>
-            <Text style={styles.infoValue}>{peekAlloc}분</Text>
+            <Ionicons name="calendar-outline" size={16} color={colors.icon} />
+            <Text style={[styles.infoLabel, { color: colors.text }]}>배차간격</Text>
+            <Text style={[styles.infoValue, { color: colors.text }]}>{peekAlloc}분</Text>
           </View>
         </View>
       </View>
@@ -208,56 +210,56 @@ const Schedule = () => {
     const isOpen = openAccordions.has(index);
     
     return (
-      <View key={index} style={styles.accordionItem}>
+      <View key={index} style={[styles.accordionItem, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <TouchableOpacity
           onPress={() => toggleAccordion(index)}
-          style={styles.accordionHeader}
+          style={[styles.accordionHeader, { backgroundColor: colors.card }]}
         >
           <View style={styles.accordionHeaderLeft}>
-            <View style={styles.busNumber}>
-              <Text style={styles.busNumberText}>{index + 1}</Text>
+            <View style={[styles.busNumber, { backgroundColor: colors.primary }]}>
+              <Text style={[styles.busNumberText, { color: colors.card }]}>{index + 1}</Text>
             </View>
-            <Text style={styles.routeName}>{routeName}</Text>
+            <Text style={[styles.routeName, { color: colors.text }]}>{routeName}</Text>
           </View>
           <View style={styles.accordionHeaderRight}>
-            <Text style={styles.timeText}>{upFirstTime}~{upLastTime}</Text>
+            <Text style={[styles.timeText, { color: colors.icon }]}>{upFirstTime}~{upLastTime}</Text>
             <Ionicons 
               name={isOpen ? "chevron-up" : "chevron-down"} 
               size={16} 
-              color="#6b7280" 
+              color={colors.icon} 
             />
           </View>
         </TouchableOpacity>
         
         {isOpen && (
-          <View style={styles.accordionContent}>
+          <View style={[styles.accordionContent, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
             <View style={styles.infoRow}>
-              <Ionicons name="time-outline" size={16} color="#6b7280" />
-              <Text style={styles.infoLabel}>운행시간</Text>
-              <Text style={styles.infoValue}>{upFirstTime}~{upLastTime}</Text>
+              <Ionicons name="time-outline" size={16} color={colors.icon} />
+              <Text style={[styles.infoLabel, { color: colors.text }]}>운행시간</Text>
+              <Text style={[styles.infoValue, { color: colors.text }]}>{upFirstTime}~{upLastTime}</Text>
             </View>
             
             <View style={styles.scheduleSection}>
               <View style={styles.scheduleHeader}>
-                <Ionicons name="calendar-outline" size={16} color="#6b7280" />
-                <Text style={styles.infoLabel}>배차간격</Text>
+                <Ionicons name="calendar-outline" size={16} color={colors.icon} />
+                <Text style={[styles.infoLabel, { color: colors.text }]}>배차간격</Text>
               </View>
               <View style={styles.scheduleDetails}>
                 <View style={styles.scheduleRow}>
-                  <Text style={styles.scheduleLabel}>평일:</Text>
-                  <Text style={styles.scheduleValue}>{peekAlloc}~{nPeekAlloc}분</Text>
+                  <Text style={[styles.scheduleLabel, { color: colors.icon }]}>평일:</Text>
+                  <Text style={[styles.scheduleValue, { color: colors.text }]}>{peekAlloc}~{nPeekAlloc}분</Text>
                 </View>
                 <View style={styles.scheduleRow}>
-                  <Text style={styles.scheduleLabel}>토요일:</Text>
-                  <Text style={styles.scheduleValue}>{satPeekAlloc}~{satNPeekAlloc}분</Text>
+                  <Text style={[styles.scheduleLabel, { color: colors.icon }]}>토요일:</Text>
+                  <Text style={[styles.scheduleValue, { color: colors.text }]}>{satPeekAlloc}~{satNPeekAlloc}분</Text>
                 </View>
                 <View style={styles.scheduleRow}>
-                  <Text style={styles.scheduleLabel}>일요일:</Text>
-                  <Text style={styles.scheduleValue}>{sunPeekAlloc}~{sunNPeekAlloc}분</Text>
+                  <Text style={[styles.scheduleLabel, { color: colors.icon }]}>일요일:</Text>
+                  <Text style={[styles.scheduleValue, { color: colors.text }]}>{sunPeekAlloc}~{sunNPeekAlloc}분</Text>
                 </View>
                 <View style={styles.scheduleRow}>
-                  <Text style={styles.scheduleLabel}>공휴일:</Text>
-                  <Text style={styles.scheduleValue}>{wePeekAlloc}~{weNPeekAlloc}분</Text>
+                  <Text style={[styles.scheduleLabel, { color: colors.icon }]}>공휴일:</Text>
+                  <Text style={[styles.scheduleValue, { color: colors.text }]}>{wePeekAlloc}~{weNPeekAlloc}분</Text>
                 </View>
               </View>
             </View>
@@ -272,10 +274,10 @@ const Schedule = () => {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => setIsDrawerOpen(true)}
-          style={styles.scheduleButton}
+          style={[styles.scheduleButton, { backgroundColor: colors.card }]}
         >
-          <Text style={styles.scheduleTitle}>버스 시간표</Text>
-          <Text style={styles.scheduleSubtitle}>클릭하여 전체 버스 시간표 보기</Text>
+          <Text style={[styles.scheduleTitle, { color: colors.text }]}>버스 시간표</Text>
+          <Text style={[styles.scheduleSubtitle, { color: colors.icon }]}>클릭하여 전체 버스 시간표 보기</Text>
         </TouchableOpacity>
       </View>
 
@@ -285,14 +287,14 @@ const Schedule = () => {
         presentationStyle="pageSheet"
         onRequestClose={() => setIsDrawerOpen(false)}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>버스 시간표</Text>
+        <View style={[styles.modalContainer, { backgroundColor: colors.background }]}>
+          <View style={[styles.modalHeader, { borderBottomColor: colors.border }]}>
+            <Text style={[styles.modalTitle, { color: colors.text }]}>버스 시간표</Text>
             <TouchableOpacity
               onPress={() => setIsDrawerOpen(false)}
-              style={styles.closeButton}
+              style={[styles.closeButton, { backgroundColor: colors.card }]}
             >
-              <Ionicons name="chevron-down" size={20} color="#6b7280" />
+              <Ionicons name="chevron-down" size={20} color={colors.icon} />
             </TouchableOpacity>
           </View>
           
