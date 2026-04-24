@@ -2,7 +2,7 @@ import { useTheme } from "@/contexts/theme-context";
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
 import { useEffect, useState } from "react";
-import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { busCollection } from "./busCollection";
 
 export const BusTimelineSkeleton = () => {
@@ -211,7 +211,7 @@ const Schedule = () => {
     
     return (
       <View key={index} style={[styles.accordionItem, { backgroundColor: colors.card, borderColor: colors.border }]}>
-        <TouchableOpacity
+        <Pressable
           onPress={() => toggleAccordion(index)}
           style={[styles.accordionHeader, { backgroundColor: colors.card }]}
         >
@@ -229,7 +229,7 @@ const Schedule = () => {
               color={colors.icon} 
             />
           </View>
-        </TouchableOpacity>
+        </Pressable>
         
         {isOpen && (
           <View style={[styles.accordionContent, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
@@ -272,13 +272,13 @@ const Schedule = () => {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity
+        <Pressable
           onPress={() => setIsDrawerOpen(true)}
           style={[styles.scheduleButton, { backgroundColor: colors.card }]}
         >
           <Text style={[styles.scheduleTitle, { color: colors.text }]}>버스 시간표</Text>
           <Text style={[styles.scheduleSubtitle, { color: colors.icon }]}>클릭하여 전체 버스 시간표 보기</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
 
       <Modal
@@ -290,12 +290,12 @@ const Schedule = () => {
         <View style={[styles.modalContainer, { backgroundColor: colors.background }]}>
           <View style={[styles.modalHeader, { borderBottomColor: colors.border }]}>
             <Text style={[styles.modalTitle, { color: colors.text }]}>버스 시간표</Text>
-            <TouchableOpacity
+            <Pressable
               onPress={() => setIsDrawerOpen(false)}
               style={[styles.closeButton, { backgroundColor: colors.card }]}
             >
               <Ionicons name="chevron-down" size={20} color={colors.icon} />
-            </TouchableOpacity>
+            </Pressable>
           </View>
           
           <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>

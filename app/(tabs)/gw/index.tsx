@@ -6,7 +6,7 @@ import { useTheme } from "@/contexts/theme-context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { usePathname, useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Place() {
   const [showSettings, setShowSettings] = useState(false);
@@ -21,7 +21,7 @@ export default function Place() {
         <Button onSettingsPress={() => setShowSettings(true)} />
         <View style={styles.cardsContainer}>
           <View style={styles.grid}>
-            <TouchableOpacity
+            <Pressable
               style={[styles.cardBase, styles.cardBlue]}
               onPress={() => router.push(`${pathname}/busN` as any)}
             >
@@ -34,8 +34,8 @@ export default function Place() {
               <MaterialIcons name="directions-car" size={48} color="#2563eb" />
               <MaterialIcons name="directions-bike" size={48} color="#2563eb" /> */}
               <Text style={styles.cardText}>{text('bus.bongsa_nesan')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               style={[styles.cardBase, styles.cardGreen]}
               onPress={() => router.push(`${pathname}/busJ` as any)}
             >
@@ -48,7 +48,7 @@ export default function Place() {
               <MaterialIcons name="directions-ferry" size={48} color="#16a34a" />
               <MaterialIcons name="directions-railway" size={48} color="#16a34a" /> */}
               <Text style={styles.cardText}>{text('bus.bongsa_terminal')}</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
         <SettingsModal

@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { usePathname, useRouter } from "expo-router";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { getProcessSteps } from "./steps";
 
 export const shuttleSeoul = [
@@ -36,22 +36,22 @@ export default function ShuttleDisplay() {
             <ThemedText>요금: 페이코 승차권 예약 2000원</ThemedText>
           </View>
           <View style={styles.tabContainer}>
-            <TouchableOpacity
+            <Pressable
               onPress={() => router.push('/se/shuttle')}
               style={activeShuttleTab === 'seoul' ? styles.tabActive : styles.tabInactive}
             >
               <ThemedText style={activeShuttleTab === 'seoul' ? styles.tabInactiveText : styles.tabActiveText}>
                 서울-국제 셔틀
               </ThemedText>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               onPress={() => router.push('/gl/shuttle')}
               style={activeShuttleTab === 'global' ? styles.tabActive : styles.tabInactive}
             >
               <ThemedText style={activeShuttleTab === 'global' ? styles.tabInactiveText : styles.tabActiveText}>
                 국제-서울 셔틀
               </ThemedText>
-            </TouchableOpacity>
+            </Pressable>
           </View>
           <View style={styles.timelineContainer}>
             <View style={styles.timelineLine}></View>
@@ -129,9 +129,9 @@ export default function ShuttleDisplay() {
         </View>
         <View style={styles.navContainer}>
           <View style={styles.navInner}>
-            <TouchableOpacity onPress={() => router.push('/(tabs)/' + (activeShuttleTab === 'seoul' ? 'gl' : 'se') as any)}>
+            <Pressable onPress={() => router.push('/(tabs)/' + (activeShuttleTab === 'seoul' ? 'gl' : 'se') as any)}>
               <ThemedText style={styles.navLink}>← Back to {activeShuttleTab === 'seoul' ? 'Global activeShuttleTab' : 'Seoul activeShuttleTab'}</ThemedText>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>

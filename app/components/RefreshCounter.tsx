@@ -1,5 +1,5 @@
 import { usePathname } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useBusData } from "../hooks/useBusData";
 
 export default function RefreshCounter() {
@@ -11,12 +11,12 @@ export default function RefreshCounter() {
       <Text style={styles.refreshText}>
         Next data update in: <Text style={styles.refreshCounter}>{timeUntilNextFetch}s</Text>
       </Text>
-      <TouchableOpacity
+      <Pressable
         onPress={fetchBusData}
         style={styles.refreshButton}
       >
         <Text style={styles.refreshButtonText}>Refresh Now</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

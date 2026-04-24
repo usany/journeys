@@ -6,7 +6,7 @@ import { useTheme } from "@/contexts/theme-context";
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname, useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 export default function PlaceTwo() {
   const [showSettings, setShowSettings] = useState(false);
   const { colors } = useTheme();
@@ -20,37 +20,37 @@ export default function PlaceTwo() {
         <Button onSettingsPress={() => setShowSettings(true)} />
         <View style={styles.cardsContainer}>
           <View style={styles.grid}>
-            <TouchableOpacity
+            <Pressable
               style={[styles.cardBase, styles.cardRed]}
               onPress={() => router.push(`${pathname}/busTo` as any)}
             >
               <Ionicons name="arrow-down" size={48} color="#dc2626" style={styles.iconBase} />
               {/* <Ionicons name="arrow-forward" size={48} color="#dc2626" style={styles.iconBase} /> */}
               <Text style={styles.cardText}>{text('bus.foreign_lang')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               style={[styles.cardBase, styles.cardIndigo]}
               onPress={() => router.push(`${pathname}/busFrom` as any)}
             >
               <Ionicons name="arrow-up" size={48} color="#4f46e5" style={styles.iconBase} />
               {/* <Ionicons name="arrow-back" size={48} color="#4f46e5" style={styles.iconBase} /> */}
               <Text style={styles.cardText}>{text('bus.sasak')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               style={[styles.cardBase, styles.cardPink]}
               onPress={() => router.push(`${pathname}/commute` as any)}
             >
               <Ionicons name="location" size={48} color="#db2777" style={styles.iconBase} />
               <Text style={styles.cardText}>{text('bus.yeongtong')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </Pressable>
+            <Pressable
               style={[styles.cardBase, styles.cardTeal]}
               onPress={() => router.push(`${pathname}/shuttle` as any)}
             >
               <Ionicons name="swap-horizontal" size={48} color="#0d9488" style={styles.iconBase} />
               {/* <Ionicons name="home" size={48} color="#0d9488" style={styles.iconBase} /> */}
               <Text style={styles.cardText}>{text('bus.global_shuttle')}</Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
         <SettingsModal

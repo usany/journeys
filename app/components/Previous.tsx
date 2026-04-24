@@ -1,5 +1,5 @@
 import { usePathname, useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Previous() {
   const pathname = usePathname();
@@ -9,9 +9,9 @@ export default function Previous() {
   return (
     <View style={styles.navContainer}>
       <View style={styles.navInner}>
-        <TouchableOpacity onPress={() => router.push(backPath as any)}>
+        <Pressable onPress={() => router.push(backPath as any)}>
           <Text style={styles.navLink}>← Back to {backPath}</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   )

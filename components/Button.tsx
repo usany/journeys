@@ -1,4 +1,5 @@
 import { ThemedText } from "@/components/themed-text";
+import { useLanguage } from "@/contexts/language-context";
 import { useTheme } from "@/contexts/theme-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -9,11 +10,12 @@ interface Props {
 
 export function Button({ onSettingsPress }: Props) {
   const { colors } = useTheme();
+  const { text } = useLanguage();
 
   return (
     <View style={styles.headerButtons}>
       <ThemedText style={styles.subtitle}>
-        어디로 떠나볼까요?
+        {text('app.subtitle')}
       </ThemedText>
       <Pressable onPress={onSettingsPress} style={styles.settingsButton}>
         <Ionicons name="settings-outline" size={24} color={colors.text} />
